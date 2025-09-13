@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PerfPi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+788f0ee4c5a304e364b3db84997cf132c6d964e9")]
 [assembly: System.Reflection.AssemblyProductAttribute("PerfPi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PerfPi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
