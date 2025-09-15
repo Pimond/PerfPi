@@ -45,9 +45,7 @@ C:\Users\Pi\Documents\0CodeBase\Piperf\bin\Debug\net8.0-windows\runtimes\osx-x64
 C:\Users\Pi\Documents\0CodeBase\Piperf\bin\Debug\net8.0-windows\runtimes\unix\lib\net8.0\System.IO.Ports.dll
 C:\Users\Pi\Documents\0CodeBase\Piperf\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.IO.Ports.dll
 C:\Users\Pi\Documents\0CodeBase\Piperf\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Management.dll
-C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\MainWindows.baml
 C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\App.baml
-C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\MainWindows.g.cs
 C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\App.g.cs
 C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\Piperf_MarkupCompile.cache
 C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\Piperf.g.resources
@@ -63,3 +61,5 @@ C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\PerfPi.csproj.Co
 C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\PerfPi.sourcelink.json
 C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\PerfPi.csproj.Up2Date
 C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\PerfPi.genruntimeconfig.cache
+C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Pi\Documents\0CodeBase\Piperf\obj\Debug\net8.0-windows\MainWindow.g.cs

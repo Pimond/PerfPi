@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Piperf")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e12bb2131726ae02ddd979d18571a13bf1e0b551")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c63f8836ab3d7069e42afea4e153eeb32718fde5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Piperf")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Piperf")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

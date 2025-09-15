@@ -13,8 +13,11 @@ namespace Piperf {
     private readonly Config _cfg;
     private readonly SensorReader _sensors = new();
     private readonly ThroughputCounters _counters = new();
-    private readonly DispatcherTimer _timer;
-    private bool _clickThrough = true; // default
+    private readonly DispatcherTimer _metricsTimer;
+    private readonly DispatcherTimer _inputTimer;   // NEW: fast Alt watcher
+
+    private bool _clickThrough = true;
+    private bool _currentHitTestable;               // tracks applied state
 
     public double OverlayOpacity => _cfg.Opacity;
     public double FontSize => _cfg.FontSize;
@@ -22,17 +25,28 @@ namespace Piperf {
     public MainWindow(Config cfg) {
       _cfg = cfg;
       DataContext = this;
-      InitializeComponent();                 // <-- this compiles when XAML Build Action=Page and x:Class matches
-      _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(_cfg.PollIntervalMs) };
-      _timer.Tick += (_, __) => Tick();
-      _timer.Start();
+      InitializeComponent();
+
+      // metrics update timer (as before)
+      _metricsTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(_cfg.PollIntervalMs) };
+      _metricsTimer.Tick += (_, __) => TickMetrics();
+      _metricsTimer.Start();
+
+      // input watcher: ~30ms for instant Alt response
+      _inputTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(30) };
+      _inputTimer.Tick += (_, __) => ApplyHitTestFromState();
+      _inputTimer.Start();
     }
 
     void Window_Loaded(object sender, RoutedEventArgs e) {
       RestorePositionOrTopRight();
-      UpdateClickThrough();
+      UpdateClickThrough();     // sets baseline
+      ApplyHitTestFromState();  // apply immediate state
     }
-    void Window_SourceInitialized(object? sender, EventArgs e) => UpdateClickThrough();
+    void Window_SourceInitialized(object? sender, EventArgs e) {
+      UpdateClickThrough();
+      ApplyHitTestFromState();
+    }
 
     private void RestorePositionOrTopRight() {
       if (_cfg.PositionX.HasValue && _cfg.PositionY.HasValue) {
@@ -51,7 +65,8 @@ namespace Piperf {
       Config.Save(_cfg);
     }
 
-    private void Tick() {
+    // --- Metrics text update (unchanged except method name) ---
+    private void TickMetrics() {
       try {
         var s = _sensors.Read();
         var t = _counters.Sample();
@@ -60,33 +75,37 @@ namespace Piperf {
         OverlayText.Text =
           $"🖥️ CPU  {s.CpuLoad,3:0}%   🌡️ {FormatTemp(s.CpuTemp)}\n" +
           $"🎮 GPU  {s.GpuLoad,3:0}%   🌡️ {FormatTemp(s.GpuTemp)}\n" +
-          $"💽 Disk  ⬇ R {MBps(t.DiskRead),7}   ⬆ W {MBps(t.DiskWrite)}\n" +
-          $"📶 Net   ⬆ Up {MBps(t.NetUp),7}   ⬇ Down {MBps(t.NetDown)}";
+          $"💽 Disk  ⬆ W {MBps(t.DiskWrite),7}   ⬇ R {MBps(t.DiskRead)}\n" +
+          $"📶 Net   ⬇ D {MBps(t.NetDown),7}   ⬆ U {MBps(t.NetDown)}";
       } catch {
         OverlayText.Text = "— sensors unavailable —";
       }
     }
 
-    private static string FormatTemp(float value) {
-      if (float.IsNaN(value) || value <= 0) return "—°C";
-      return $"{value:0}°C";
-    }
+    private static string FormatTemp(float value) => (float.IsNaN(value) || value <= 0) ? "—°C" : $"{value:0}°C";
 
-    // Alt + double-click toggles click-through
+    // --- Mouse / toggle logic ---
     private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-      if ((Keyboard.Modifiers & ModifierKeys.Alt) != 0 && e.ClickCount == 2) {
+      bool alt = (Keyboard.Modifiers & ModifierKeys.Alt) != 0;
+
+      // Alt + double-click => toggle persistent click-through mode
+      if (alt && e.ClickCount == 2) {
         _clickThrough = !_clickThrough;
-        UpdateClickThrough();
+        UpdateClickThrough();     // updates title + baseline
+        ApplyHitTestFromState();  // ensure immediate effect
         e.Handled = true;
         return;
       }
-      if (!_clickThrough && e.LeftButton == MouseButtonState.Pressed) {
-        DragMove();
+
+      // Alt-drag to move (works in either mode, because ApplyHitTestFromState makes it hit-testable while Alt is down)
+      if (e.LeftButton == MouseButtonState.Pressed && alt) {
+        try { DragMove(); } catch { /* ignore */ }
       }
     }
 
     private void Window_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) {
-      if (!_clickThrough) SavePosition(); // persist new location after drag
+      // Always persist final position after a drag
+      SavePosition();
     }
 
     // Optional backup hotkey
@@ -95,10 +114,21 @@ namespace Piperf {
                            (ModifierKeys.Control | ModifierKeys.Shift)) {
         _clickThrough = !_clickThrough;
         UpdateClickThrough();
+        ApplyHitTestFromState();
       }
     }
 
-    // Win32 styles
+    // --- Hit-test management ---
+    // Desired rule: window is hit-testable if (interactive mode) OR (Alt is currently held)
+    private void ApplyHitTestFromState() {
+      bool alt = (Keyboard.Modifiers & ModifierKeys.Alt) != 0;
+      bool desiredHitTestable = !_clickThrough || alt;
+      if (desiredHitTestable != _currentHitTestable) {
+        SetHitTestable(desiredHitTestable);
+        _currentHitTestable = desiredHitTestable;
+      }
+    }
+
     const int GWL_EXSTYLE = -20;
     const int WS_EX_TRANSPARENT = 0x20;
     const int WS_EX_LAYERED = 0x80000;
@@ -107,8 +137,8 @@ namespace Piperf {
     [DllImport("user32.dll")] static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
     private void UpdateClickThrough() {
-      SetHitTestable(!_clickThrough);
       Title = _clickThrough ? "Piperf (click-through)" : "Piperf (interactive)";
+      // Do not set styles here directly—ApplyHitTestFromState() consolidates logic with Alt handling
     }
 
     private void SetHitTestable(bool hitTestable) {
@@ -121,7 +151,8 @@ namespace Piperf {
 
     protected override void OnClosed(EventArgs e) {
       base.OnClosed(e);
-      _timer.Stop();
+      _metricsTimer.Stop();
+      _inputTimer.Stop();
       _sensors.Dispose();
       _counters.Dispose();
     }
