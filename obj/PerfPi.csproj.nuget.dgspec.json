@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pi\\Documents\\0CodeBase\\PerfPi\\PerfPi.csproj": {}
+    "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\PerfPi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pi\\Documents\\0CodeBase\\PerfPi\\PerfPi.csproj": {
+    "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\PerfPi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pi\\Documents\\0CodeBase\\PerfPi\\PerfPi.csproj",
-        "projectName": "PerfPi",
-        "projectPath": "C:\\Users\\Pi\\Documents\\0CodeBase\\PerfPi\\PerfPi.csproj",
+        "projectUniqueName": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\PerfPi.csproj",
+        "projectName": "Piperf",
+        "projectPath": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\PerfPi.csproj",
         "packagesPath": "C:\\Users\\Pi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pi\\Documents\\0CodeBase\\PerfPi\\obj\\",
+        "outputPath": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Pi\\AppData\\Roaming\\NuGet\\NuGet.Config"

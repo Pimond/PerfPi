@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Threading;
 
-namespace PerfPi {
+namespace Piperf {
   public partial class MainWindow : Window, INotifyPropertyChanged {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -108,7 +108,7 @@ namespace PerfPi {
 
     private void UpdateClickThrough() {
       SetHitTestable(!_clickThrough);
-      Title = _clickThrough ? "PerfPi (click-through)" : "PerfPi (interactive)";
+      Title = _clickThrough ? "Piperf (click-through)" : "Piperf (interactive)";
     }
 
     private void SetHitTestable(bool hitTestable) {

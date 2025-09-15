@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.NetworkInformation;
 
-namespace PerfPi {
+namespace Piperf {
   public sealed class ThroughputCounters : IDisposable {
     private readonly PerformanceCounter _diskRead;
     private readonly PerformanceCounter _diskWrite;

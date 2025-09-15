@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LibreHardwareMonitor.Hardware;
 
-namespace PerfPi {
+namespace Piperf {
   public sealed class SensorReader : IDisposable {
     private readonly Computer _pc;
 

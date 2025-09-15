@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text.Json;
 
-namespace PerfPi {
+namespace Piperf {
   public sealed class Config {
     public int    PollIntervalMs { get; set; } = 750;
     public double Opacity        { get; set; } = 0.9;
@@ -13,7 +13,7 @@ namespace PerfPi {
     public double? PositionY     { get; set; }
 
     public static class Paths {
-      public static string AppDataDir => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PerfPi");
+      public static string AppDataDir => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Piperf");
       public static string ConfigDir  => Path.Combine(AppDataDir, "config");
       public static string ConfigFile => Path.Combine(ConfigDir, "config.json");
     }
