@@ -11,6 +11,7 @@ namespace Piperf {
       _pc = new Computer {
         IsCpuEnabled = true,
         IsGpuEnabled = true,
+        IsMemoryEnabled = true,
         IsMotherboardEnabled = true
       };
       _pc.Open();
@@ -20,6 +21,8 @@ namespace Piperf {
       _pc.Accept(new UpdateVisitor());
 
       float cpuLoad = float.NaN, cpuTemp = float.NaN, gpuLoad = float.NaN, gpuTemp = float.NaN;
+      float ramUsed = float.NaN, ramTotal = float.NaN;
+
 
       foreach (var hw in _pc.Hardware) {
         if (hw.HardwareType == HardwareType.Cpu) {
@@ -72,7 +75,18 @@ namespace Piperf {
           if (gBest.HasValue) gpuTemp = gBest.Value;
         }
       }
-
+      // Some systems expose CPU temperature only via the motherboard/super I/O
+      if (float.IsNaN(cpuTemp)) {
+        var mbTemps = _pc.Hardware
+          .Where(h => h.HardwareType == HardwareType.Motherboard)
+          .SelectMany(EnumerateSensors)
+          .Where(s => s.SensorType == SensorType.Temperature &&
+                      (s.Name.Contains("cpu", StringComparison.OrdinalIgnoreCase) ||
+                       s.Name.Contains("package", StringComparison.OrdinalIgnoreCase)))
+          .Select(s => s.Value ?? float.NaN)
+          .Where(v => !float.IsNaN(v));
+        if (mbTemps.Any()) cpuTemp = mbTemps.Max();
+      }
       return (cpuLoad, cpuTemp, gpuLoad, gpuTemp);
     }
 
