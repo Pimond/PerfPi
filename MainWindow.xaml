@@ -18,7 +18,7 @@
     <StackPanel>
       <TextBlock Name="OverlayText"
                  FontFamily="Consolas"
-                 FontSize="{Binding FontSize}"
+                 FontSize="{Binding UiFontSize}"
                  Foreground="White"
                  TextWrapping="Wrap"
                  MaxWidth="360" />

@@ -2326,9 +2326,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\PerfPi.csproj",
+      "projectUniqueName": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\Piperf.csproj",
       "projectName": "Piperf",
-      "projectPath": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\PerfPi.csproj",
+      "projectPath": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\Piperf.csproj",
       "packagesPath": "C:\\Users\\Pi\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\obj\\",
       "projectStyle": "PackageReference",
@@ -2401,7 +2401,7 @@
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           },
-          "Microsoft.WindowsDesktop.App.WPF": {
+          "Microsoft.WindowsDesktop.App": {
             "privateAssets": "none"
           }
         },

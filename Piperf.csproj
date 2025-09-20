@@ -4,6 +4,7 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>Piperf</AssemblyName>
     <ApplicationIcon>Assets\Piperf.ico</ApplicationIcon> 
@@ -12,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.4" />
-        <Resource Include="Assets\PerfPi.ico" />
+        <Resource Include="Assets\Piperf.ico" />
 
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bh6t6f/HzFo=",
+  "dgSpecHash": "TRCM/5GcB7w=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\PerfPi.csproj",
+  "projectFilePath": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\Piperf.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pi\\.nuget\\packages\\hidsharp\\2.1.0\\hidsharp.2.1.0.nupkg.sha512",
     "C:\\Users\\Pi\\.nuget\\packages\\librehardwaremonitorlib\\0.9.4\\librehardwaremonitorlib.0.9.4.nupkg.sha512",
