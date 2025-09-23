@@ -2,6 +2,9 @@
 
 A lightweight always-on-top performance overlay for Windows built with WPF. Piperf displays CPU, GPU, disk, and network activity while staying out of the way behind your games or other apps.
 
+<img width="700" height="170" alt="image" src="https://github.com/user-attachments/assets/7492d945-cdd4-481a-8f29-83d0b896ae3a" />
+
+
 ## Features
 
 - Transparent click-through overlay with Alt + drag repositioning
