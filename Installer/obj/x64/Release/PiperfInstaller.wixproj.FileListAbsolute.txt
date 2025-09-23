@@ -1,0 +1,7 @@
+C:\Users\Pi\Documents\0CodeBase\Piperf\Installer\obj\x64\Release\PiperfInstaller.wixproj.CoreCompileInputs.cache
+C:\Users\Pi\Documents\0CodeBase\Piperf\Installer\obj\x64\Release\_PiperfFiles_dir.wxs
+C:\Users\Pi\Documents\0CodeBase\Piperf\Installer\bin\x64\Release\PiperfInstaller.msi
+C:\Users\Pi\Documents\0CodeBase\Piperf\Installer\bin\x64\Release\PiperfInstaller.wixpdb
+C:\Users\Pi\Documents\0CodeBase\Piperf\Installer\obj\x64\Release\PiperfInstaller.msi
+C:\Users\Pi\Documents\0CodeBase\Piperf\Installer\obj\x64\Release\PiperfInstaller.wixpdb
+C:\Users\Pi\Documents\0CodeBase\Piperf\Installer\obj\x64\Release\PiperfInstaller.wixproj.BindTracking-neutral.txt

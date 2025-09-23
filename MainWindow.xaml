@@ -9,21 +9,58 @@
         Loaded="Window_Loaded" SourceInitialized="Window_SourceInitialized"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         MouseLeftButtonUp="Window_MouseLeftButtonUp"
-        KeyDown="Window_KeyDown">
+       >
   <Border CornerRadius="10" Padding="10" Opacity="{Binding OverlayOpacity}">
     <Border.Background>
       <SolidColorBrush Opacity="0.18" Color="#111111"/>
     </Border.Background>
 
     <StackPanel>
-      <TextBlock Name="OverlayText"
-                 FontFamily="Consolas"
-                 FontSize="{Binding UiFontSize}"
-                 Foreground="White"
-                 TextWrapping="Wrap"
-                 MaxWidth="360" />
-      <TextBlock FontFamily="Consolas" FontSize="10" Foreground="#77FFFFFF"
-                 Text="Hold Alt and drag to move"/>
+      <Grid Margin="0">
+        <Grid.Resources>
+          <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="{Binding UiFontSize}"/>
+          </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="CPU" Grid.Row="0" Grid.Column="0" Margin="0,0,12,0"/>
+        <TextBlock x:Name="CpuLoadText" Grid.Row="0" Grid.Column="1" Margin="12,0,12,0" TextAlignment="Right" HorizontalAlignment="Right" Text="&#x2014;"/>
+        <TextBlock x:Name="CpuTempText" Grid.Row="0" Grid.Column="2" Margin="12,0,0,0" TextAlignment="Right" HorizontalAlignment="Right" Text="&#x2014;"/>
+
+        <TextBlock Text="GPU" Grid.Row="1" Grid.Column="0" Margin="0,0,12,0"/>
+        <TextBlock x:Name="GpuLoadText" Grid.Row="1" Grid.Column="1" Margin="12,0,12,0" TextAlignment="Right" HorizontalAlignment="Right" Text="&#x2014;"/>
+        <TextBlock x:Name="GpuTempText" Grid.Row="1" Grid.Column="2" Margin="12,0,0,0" TextAlignment="Right" HorizontalAlignment="Right" Text="&#x2014;"/>
+
+        <TextBlock Text="Disk" Grid.Row="2" Grid.Column="0" Margin="0,0,12,0"/>
+        <TextBlock x:Name="DiskWriteText" Grid.Row="2" Grid.Column="1" Margin="12,0,12,0" TextAlignment="Right" HorizontalAlignment="Right" Text="W &#x2014;"/>
+        <TextBlock x:Name="DiskReadText" Grid.Row="2" Grid.Column="2" Margin="12,0,0,0" TextAlignment="Right" HorizontalAlignment="Right" Text="R &#x2014;"/>
+
+        <TextBlock Text="Net" Grid.Row="3" Grid.Column="0" Margin="0,0,12,0"/>
+        <TextBlock x:Name="NetDownText" Grid.Row="3" Grid.Column="1" Margin="12,0,12,0" TextAlignment="Right" HorizontalAlignment="Right" Text="D &#x2014;"/>
+        <TextBlock x:Name="NetUpText" Grid.Row="3" Grid.Column="2" Margin="12,0,0,0" TextAlignment="Right" HorizontalAlignment="Right" Text="U &#x2014;"/>
+
+        <TextBlock Text="Ping" Grid.Row="4" Grid.Column="0" Margin="0,0,12,0"/>
+        <TextBlock x:Name="PingValueText" Grid.Row="4" Grid.Column="1" Margin="12,0,12,0" TextAlignment="Right" HorizontalAlignment="Right" Text="&#x2014;"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text=""/>
+      </Grid>
+      <TextBlock x:Name="StatusText" FontFamily="Consolas" FontSize="10" Foreground="#77FFFFFF" Text="Loading data..." Margin="0,6,0,0"/>
+      <TextBlock FontFamily="Consolas" FontSize="10" Foreground="#77FFFFFF" Text="Hold Alt and drag to move"/>
     </StackPanel>
   </Border>
 </Window>
+
+

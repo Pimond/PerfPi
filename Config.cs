@@ -5,7 +5,7 @@ using System.Text.Json;
 namespace Piperf {
   public sealed class Config {
     public const string DefaultPingTarget = "1.1.1.1";
-    public const int DefaultPingIntervalMs = 500;
+    public const int DefaultPingIntervalMs = 1000;
 
     public int    PollIntervalMs { get; set; } = 750;
     public double Opacity        { get; set; } = 0.9;

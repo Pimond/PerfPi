@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,18 +23,15 @@ namespace Piperf
     private readonly DispatcherTimer _pingTimer;
     private readonly Ping _ping = new();
 
-
     private Task<SensorReader>? _sensorInitTask;
     private Task<ThroughputCounters>? _counterInitTask;
 
     private SensorReader? _sensors;
     private ThroughputCounters? _counters;
     private bool _isClosing;
-    private bool _clickThrough = true;
-    private bool _currentHitTestable;
+    private bool? _currentHitTestable;
     private bool _pingInFlight;
     private string _pingDisplay = string.Empty;
-
 
     private TrayIcon? _tray;
 
@@ -54,7 +50,9 @@ namespace Piperf
       _inputTimer.Tick += (_, __) => ApplyHitTestFromState();
       _inputTimer.Start();
 
-      _pingDisplay = FormatPingDisplay(null, "--");
+      _pingDisplay = FormatPingDisplay(null, null);
+      SetMetricsUnavailable();
+
       _pingTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(ResolvePingInterval()) };
       _pingTimer.Tick += PingTimer_Tick;
       _pingTimer.Start();
@@ -64,27 +62,23 @@ namespace Piperf
 
     public double OverlayOpacity => _cfg.Opacity;
     public double UiFontSize => _cfg.FontSize;
-    public bool IsClickThrough => _clickThrough;
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
       RestorePositionOrTopRight();
-      UpdateClickThrough();
       ApplyHitTestFromState();
       Dispatcher.InvokeAsync(StartMetricsInitialization, DispatcherPriority.Background);
+      _tray?.RefreshMenu();
     }
 
     private void Window_SourceInitialized(object? sender, EventArgs e)
     {
-      UpdateClickThrough();
       ApplyHitTestFromState();
     }
 
     private void StartMetricsInitialization()
     {
       if (_sensorInitTask != null) return;
-
-      OverlayText.Text = "Loading metrics...";
 
       _sensorInitTask = Task.Factory.StartNew(() => new SensorReader(),
                                               CancellationToken.None,
@@ -116,37 +110,8 @@ namespace Piperf
       catch (Exception ex)
       {
         Debug.WriteLine($"Metrics initialization failed: {ex}");
-        await Dispatcher.InvokeAsync(() => OverlayText.Text = "Metrics unavailable");
+        await Dispatcher.InvokeAsync(() => SetMetricsUnavailable("Metrics unavailable"));
       }
-    }
-
-    public void ToggleClickThrough()
-    {
-      _clickThrough = !_clickThrough;
-      UpdateClickThrough();
-      ApplyHitTestFromState();
-    }
-
-    private void RestorePositionOrTopRight()
-    {
-      if (_cfg.PositionX.HasValue && _cfg.PositionY.HasValue)
-      {
-        Left = _cfg.PositionX.Value;
-        Top = _cfg.PositionY.Value;
-      }
-      else
-      {
-        var wa = SystemParameters.WorkArea;
-        Left = wa.Right - ActualWidth - 10;
-        Top = wa.Top + 10;
-      }
-    }
-
-    private void SavePosition()
-    {
-      _cfg.PositionX = Left;
-      _cfg.PositionY = Top;
-      Config.Save(_cfg);
     }
 
     private void TickMetrics()
@@ -173,48 +138,79 @@ namespace Piperf
         var sensorSnapshot = sensors.Read();
         var throughputSnapshot = counters.Sample();
 
-        var sb = new StringBuilder();
-        sb.AppendFormat(CultureInfo.InvariantCulture, "{0,-4} {1,5:0}%  {2}", "CPU", sensorSnapshot.CpuLoad, FormatTemp(sensorSnapshot.CpuTemp))
-          .AppendLine();
+        CpuLoadText.Text = FormatPercentage(sensorSnapshot.CpuLoad);
+        CpuTempText.Text = FormatTemp(sensorSnapshot.CpuTemp);
 
-        sb.AppendFormat(CultureInfo.InvariantCulture, "{0,-4} {1,5:0}%  {2}", "GPU", sensorSnapshot.GpuLoad, FormatTemp(sensorSnapshot.GpuTemp))
-          .AppendLine();
+        GpuLoadText.Text = FormatPercentage(sensorSnapshot.GpuLoad);
+        GpuTempText.Text = FormatTemp(sensorSnapshot.GpuTemp);
 
-        sb.AppendFormat(CultureInfo.InvariantCulture, "{0,-4} W {1}  R {2}", "Disk", FormatThroughput(throughputSnapshot.DiskWrite), FormatThroughput(throughputSnapshot.DiskRead))
-          .AppendLine();
+        DiskWriteText.Text = FormatThroughputSegment("W", throughputSnapshot.DiskWrite);
+        DiskReadText.Text = FormatThroughputSegment("R", throughputSnapshot.DiskRead);
 
-        sb.AppendFormat(CultureInfo.InvariantCulture, "{0,-4} D {1}  U {2}", "Net", FormatThroughput(throughputSnapshot.NetDown), FormatThroughput(throughputSnapshot.NetUp))
-          .AppendLine();
+        NetDownText.Text = FormatThroughputSegment("D", throughputSnapshot.NetDown);
+        NetUpText.Text = FormatThroughputSegment("U", throughputSnapshot.NetUp);
 
-        sb.Append(_pingDisplay);
-
-        OverlayText.Text = sb.ToString();
+        PingValueText.Text = _pingDisplay;
+        StatusText.Text = string.Empty;
       }
       catch (Exception ex)
       {
         Debug.WriteLine($"Metrics update failed: {ex}");
-        OverlayText.Text = "Metrics unavailable";
+        SetMetricsUnavailable("Metrics unavailable");
       }
     }
 
     private static string FormatThroughput(double bytesPerSecond)
     {
+      if (double.IsNaN(bytesPerSecond))
+        return $"{EmDash} MB/s";
+
       const double megabyte = 1024d * 1024d;
       var mbPerSecond = bytesPerSecond / megabyte;
-      if (mbPerSecond < 0) mbPerSecond = 0;
-      return string.Format(CultureInfo.InvariantCulture, "{0,6:0.0} MB/s", mbPerSecond);
+      if (double.IsNaN(mbPerSecond) || double.IsInfinity(mbPerSecond) || mbPerSecond < 0)
+        mbPerSecond = 0;
+
+      return string.Format(CultureInfo.InvariantCulture, "{0:0.0} MB/s", mbPerSecond);
+    }
+
+    private static string FormatThroughputSegment(string label, double bytesPerSecond)
+    {
+      var metric = FormatThroughput(bytesPerSecond);
+      return string.Format(CultureInfo.InvariantCulture, "{0} {1}", label, metric);
     }
 
     private static string FormatTemp(float value)
     {
-      if (float.IsNaN(value) || value <= 0) return "  N/A";
-      return string.Format(CultureInfo.InvariantCulture, "{0,4:0}{1}", value, DegreeCelsius);
+      return (float.IsNaN(value) || value <= 0)
+        ? EmDash
+        : string.Format(CultureInfo.InvariantCulture, "{0:0}{1}", value, DegreeCelsius);
+    }
+
+    private static string FormatPercentage(float value)
+    {
+      return float.IsNaN(value)
+        ? EmDash
+        : string.Format(CultureInfo.InvariantCulture, "{0:0}%", value);
+    }
+
+    private void SetMetricsUnavailable(string? statusMessage = null)
+    {
+      CpuLoadText.Text = EmDash;
+      CpuTempText.Text = EmDash;
+      GpuLoadText.Text = EmDash;
+      GpuTempText.Text = EmDash;
+      DiskWriteText.Text = FormatThroughputSegment("W", double.NaN);
+      DiskReadText.Text = FormatThroughputSegment("R", double.NaN);
+      NetDownText.Text = FormatThroughputSegment("D", double.NaN);
+      NetUpText.Text = FormatThroughputSegment("U", double.NaN);
+      PingValueText.Text = _pingDisplay;
+      StatusText.Text = string.IsNullOrWhiteSpace(statusMessage) ? "Loading data..." : statusMessage;
     }
 
     private int ResolvePingInterval()
     {
       var configured = _cfg.PingIntervalMs <= 0 ? Config.DefaultPingIntervalMs : _cfg.PingIntervalMs;
-      if (configured < 100) configured = 100;
+      if (configured < Config.DefaultPingIntervalMs) configured = Config.DefaultPingIntervalMs;
       return configured;
     }
 
@@ -228,6 +224,8 @@ namespace Piperf
       if (_pingInFlight) return;
       _pingInFlight = true;
 
+      string display = _pingDisplay;
+
       try
       {
         var target = string.IsNullOrWhiteSpace(_cfg.PingTarget) ? Config.DefaultPingTarget : _cfg.PingTarget;
@@ -236,50 +234,45 @@ namespace Piperf
         try
         {
           var reply = await _ping.SendPingAsync(target, timeout).ConfigureAwait(false);
-          _pingDisplay = reply.Status switch
-          {
-            IPStatus.Success => FormatPingDisplay(reply.RoundtripTime, null),
-            IPStatus.TimedOut => FormatPingDisplay(null, "Timeout"),
-            _ => FormatPingDisplay(null, reply.Status.ToString())
-          };
+          display = reply.Status == IPStatus.Success
+            ? FormatPingDisplay(reply.RoundtripTime, null)
+            : FormatPingDisplay(null, null);
         }
         catch (Exception ex)
         {
           Debug.WriteLine($"Ping failed: {ex.Message}");
-          _pingDisplay = FormatPingDisplay(null, "Error");
+          display = FormatPingDisplay(null, null);
         }
       }
       finally
       {
         _pingInFlight = false;
       }
+
+      _pingDisplay = display;
+      await Dispatcher.InvokeAsync(() =>
+      {
+        if (!_isClosing)
+        {
+          PingValueText.Text = display;
+        }
+      });
     }
 
     private static string FormatPingDisplay(long? latencyMs, string? status)
     {
       if (latencyMs.HasValue)
       {
-        return string.Format(CultureInfo.InvariantCulture, "{0,-4} {1,6:0} ms", "Ping", latencyMs.Value);
+        return string.Format(CultureInfo.InvariantCulture, "{0,6:0} ms", latencyMs.Value);
       }
 
-      var display = status ?? "--";
-      if (display.Length > 12) display = display.Substring(0, 12);
-      return string.Format(CultureInfo.InvariantCulture, "{0,-4} {1}", "Ping", display);
+      _ = status;
+      return EmDash;
     }
 
     private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
       bool altPressed = (Keyboard.Modifiers & ModifierKeys.Alt) != 0;
-
-      if (altPressed && e.ClickCount == 2)
-      {
-        _clickThrough = !_clickThrough;
-        UpdateClickThrough();
-        ApplyHitTestFromState();
-        e.Handled = true;
-        return;
-      }
-
       if (altPressed && e.LeftButton == MouseButtonState.Pressed)
       {
         try { DragMove(); }
@@ -292,31 +285,35 @@ namespace Piperf
       SavePosition();
     }
 
-    private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-    {
-      if (e.Key == Key.P && (Keyboard.Modifiers & (ModifierKeys.Control | ModifierKeys.Shift)) == (ModifierKeys.Control | ModifierKeys.Shift))
-      {
-        _clickThrough = !_clickThrough;
-        UpdateClickThrough();
-        ApplyHitTestFromState();
-      }
-    }
-
     private void ApplyHitTestFromState()
     {
       bool altPressed = (Keyboard.Modifiers & ModifierKeys.Alt) != 0;
-      bool desiredHitTestable = !_clickThrough || altPressed;
+      if (_currentHitTestable.HasValue && altPressed == _currentHitTestable.Value) return;
 
-      if (desiredHitTestable == _currentHitTestable) return;
-
-      SetHitTestable(desiredHitTestable);
-      _currentHitTestable = desiredHitTestable;
+      SetHitTestable(altPressed);
+      _currentHitTestable = altPressed;
     }
 
-    private void UpdateClickThrough()
+    private void RestorePositionOrTopRight()
     {
-      Title = _clickThrough ? "Piperf (click-through)" : "Piperf (interactive)";
-      _tray?.UpdateText();
+      if (_cfg.PositionX.HasValue && _cfg.PositionY.HasValue)
+      {
+        Left = _cfg.PositionX.Value;
+        Top = _cfg.PositionY.Value;
+      }
+      else
+      {
+        var wa = SystemParameters.WorkArea;
+        Left = wa.Right - ActualWidth - 10;
+        Top = wa.Top + 10;
+      }
+    }
+
+    private void SavePosition()
+    {
+      _cfg.PositionX = Left;
+      _cfg.PositionY = Top;
+      Config.Save(_cfg);
     }
 
     private void SetHitTestable(bool hitTestable)
@@ -418,14 +415,10 @@ namespace Piperf
       }
     }
 
-    private void SavePositionIfNeeded()
-    {
-      SavePosition();
-    }
-
     private void Notify(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     private const string DegreeCelsius = "\u00B0C";
+    private const string EmDash = "\u2014";
 
     private const int GWL_EXSTYLE = -20;
     private const int WS_EX_TRANSPARENT = 0x20;
@@ -438,7 +431,3 @@ namespace Piperf
     private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
   }
 }
-
-
-
-

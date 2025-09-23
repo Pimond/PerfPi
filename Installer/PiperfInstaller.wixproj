@@ -1,0 +1,26 @@
+<Project Sdk="WixToolset.Sdk/6.0.2">
+  <PropertyGroup>
+    <OutputType>Package</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Platform>x64</Platform>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Heat" Version="6.0.2" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="6.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Piperf.wxs" />
+    <HarvestDirectory Include="..\publish">
+      <ComponentGroupName>PiperfFiles</ComponentGroupName>
+      <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
+    </HarvestDirectory>
+    <Content Include="license.rtf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BindPath Include="..\publish" />
+  </ItemGroup>
+</Project>

@@ -10,7 +10,7 @@ namespace Piperf
   {
     private readonly WinForms.NotifyIcon _notifyIcon = new();
     private readonly WinForms.ContextMenuStrip _menu = new();
-    private readonly WinForms.ToolStripMenuItem _toggleItem = new();
+    private readonly WinForms.ToolStripMenuItem _showHideItem = new();
     private readonly WinForms.ToolStripMenuItem _startupItem = new();
     private readonly MainWindow _window;
 
@@ -18,15 +18,10 @@ namespace Piperf
     {
       _window = window;
 
-      _toggleItem.Click += (_, __) =>
-      {
-        _window.ToggleClickThrough();
-      };
-
+      _showHideItem.Click += (_, __) => ToggleWindowVisibility();
       _startupItem.Click += (_, __) => ToggleStartup();
 
-      _menu.Items.Add(new WinForms.ToolStripMenuItem("Show", null, (_, __) => ShowWindow()));
-      _menu.Items.Add(_toggleItem);
+      _menu.Items.Add(_showHideItem);
       _menu.Items.Add(new WinForms.ToolStripSeparator());
       _menu.Items.Add(_startupItem);
       _menu.Items.Add(new WinForms.ToolStripSeparator());
@@ -36,14 +31,43 @@ namespace Piperf
       _notifyIcon.Text = "Piperf";
       _notifyIcon.Icon = LoadIcon();
       _notifyIcon.Visible = true;
-      _notifyIcon.DoubleClick += (_, __) => ShowWindow();
 
-      UpdateText();
+      RefreshMenu();
     }
 
-    public void UpdateText()
+    private void ToggleWindowVisibility()
     {
-      _toggleItem.Text = _window.IsClickThrough ? "Switch to interactive" : "Switch to click-through";
+      _window.Dispatcher.Invoke(() =>
+      {
+        if (_window.IsVisible && _window.WindowState != WindowState.Minimized)
+        {
+          _window.Hide();
+        }
+        else
+        {
+          ShowWindow();
+        }
+
+        RefreshMenu();
+      });
+    }
+
+    public void RefreshMenu()
+    {
+      if (_window.Dispatcher.CheckAccess())
+      {
+        UpdateMenuItems();
+      }
+      else
+      {
+        _window.Dispatcher.Invoke(UpdateMenuItems);
+      }
+    }
+
+    private void UpdateMenuItems()
+    {
+      bool visible = _window.IsVisible && _window.WindowState != WindowState.Minimized;
+      _showHideItem.Text = visible ? "Hide Overlay" : "Show Overlay";
       _startupItem.Text = StartupManager.IsEnabled() ? "Disable Start with Windows" : "Enable Start with Windows";
     }
 
@@ -61,7 +85,7 @@ namespace Piperf
         StartupManager.Enable(exe);
       }
 
-      UpdateText();
+      RefreshMenu();
     }
 
     private static Icon LoadIcon()

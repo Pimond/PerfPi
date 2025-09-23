@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "HyQiiSX6fYw=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\Installer\\PiperfInstaller.wixproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Pi\\.nuget\\packages\\wixtoolset.heat\\6.0.2\\wixtoolset.heat.6.0.2.nupkg.sha512",
+    "C:\\Users\\Pi\\.nuget\\packages\\wixtoolset.ui.wixext\\6.0.2\\wixtoolset.ui.wixext.6.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

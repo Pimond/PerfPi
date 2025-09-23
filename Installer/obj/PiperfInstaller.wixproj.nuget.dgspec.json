@@ -1,0 +1,55 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\Installer\\PiperfInstaller.wixproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\Installer\\PiperfInstaller.wixproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\Installer\\PiperfInstaller.wixproj",
+        "projectName": "PiperfInstaller",
+        "projectPath": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\Installer\\PiperfInstaller.wixproj",
+        "packagesPath": "C:\\Users\\Pi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pi\\Documents\\0CodeBase\\Piperf\\Installer\\obj\\",
+        "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
+        "configFilePaths": [
+          "C:\\Users\\Pi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "native": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "native": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "WixToolset.Heat": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "WixToolset.UI.wixext": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            }
+          }
+        }
+      }
+    }
+  }
+}

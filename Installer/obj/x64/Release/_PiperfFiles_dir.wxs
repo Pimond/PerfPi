@@ -1,0 +1,376 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Directory Id="dir0msSSHMwrEyWnyz5XAe._SjBpyE" Name="publish">
+                <Component Id="cmpE55FZ8QPIxn6jM10OloI74VzaC8" Guid="*">
+                    <File Id="filrMcaaBWvZb220X8v6YAsZuOcDbs" KeyPath="yes" Source="SourceDir\D3DCompiler_47_cor3.dll" />
+                </Component>
+                <Component Id="cmpUHbgT3KsELQDdjPjqTAVWT4vn1g" Guid="*">
+                    <File Id="filKMfOy4bVxQSo3oA7dG3Sn8JBPgk" KeyPath="yes" Source="SourceDir\HidSharp.dll" />
+                </Component>
+                <Component Id="cmpLRql1FwQpxN4GyuRHYIj5CQcOnI" Guid="*">
+                    <File Id="filoFHvuB7vol3igOJth0D22uLcOBo" KeyPath="yes" Source="SourceDir\libMonoPosixHelper.dll" />
+                </Component>
+                <Component Id="cmpsuQ0iSZdlVMPoQREaxdCl6iWdTI" Guid="*">
+                    <File Id="fil32iI_GmPq_QdM7f4_ANUls8200c" KeyPath="yes" Source="SourceDir\LibreHardwareMonitorLib.dll" />
+                </Component>
+                <Component Id="cmpKx3Ud6oXwgxAF2v1UQDd.ZbKw0o" Guid="*">
+                    <File Id="fil.MDePzJiSj4yyw4T.nbA7XTqPqM" KeyPath="yes" Source="SourceDir\MonoPosixHelper.dll" />
+                </Component>
+                <Component Id="cmpzz2Ljn3f8WOgqA1v74VXktWHALc" Guid="*">
+                    <File Id="filF0wDyBWdQJSmSv0n8Jcd_O17cCM" KeyPath="yes" Source="SourceDir\PenImc_cor3.dll" />
+                </Component>
+                <Component Id="cmp.FBW3pnC4gIDCumjln.eqaBSRME" Guid="*">
+                    <File Id="filbktLJMOXOD_fqkdvxipZaHn6Lv0" KeyPath="yes" Source="SourceDir\Piperf.deps.json" />
+                </Component>
+                <Component Id="cmpmp3A18vADrynzmoo_JIawF.lx.Q" Guid="*">
+                    <File Id="fil5CH_rfeQM8D9Aa3QspOYDW0xAVU" KeyPath="yes" Source="SourceDir\Piperf.dll" />
+                </Component>
+                <Component Id="cmpFjx4A3QhNJ2FzAbQEp1.BdmnsQw" Guid="*">
+                    <File Id="filV62WghFK3DBqbrKxYpzE3uFSQ_4" KeyPath="yes" Source="SourceDir\Piperf.exe" />
+                </Component>
+                <Component Id="cmpKpq34f5oYLlRQS6yYgeydu1Irq4" Guid="*">
+                    <File Id="filW9EG8YIS10D369DVgXvQaVQr2Qs" KeyPath="yes" Source="SourceDir\Piperf.pdb" />
+                </Component>
+                <Component Id="cmpCDFeld7UrVyjuRHKFbqS0eneTaE" Guid="*">
+                    <File Id="filsgYdiOFBmj4Q0MTHLSgxwTNWr1M" KeyPath="yes" Source="SourceDir\Piperf.runtimeconfig.json" />
+                </Component>
+                <Component Id="cmpKeJCjCzLigTmLX5VltIcoku03Eo" Guid="*">
+                    <File Id="filNpyXln5lIzMG2v5irtJ3YTIztOY" KeyPath="yes" Source="SourceDir\PresentationNative_cor3.dll" />
+                </Component>
+                <Component Id="cmpM6TdurcctB71bgrbsCC6PWuaoLc" Guid="*">
+                    <File Id="filtYQIPiNSf3xxPl5dlqBxA2Kw2HQ" KeyPath="yes" Source="SourceDir\System.CodeDom.dll" />
+                </Component>
+                <Component Id="cmp1xnuplWqpwA.dWxYhpCaHQi362Y" Guid="*">
+                    <File Id="filyJdRR7NEq9ulzjRK2NjlVd9z5Ak" KeyPath="yes" Source="SourceDir\System.IO.Ports.dll" />
+                </Component>
+                <Component Id="cmpSV8BpkeQWg_70PN3jnL2_J6DL4s" Guid="*">
+                    <File Id="filHskOGpCUJqpmEMRyPHhyXEh9wV0" KeyPath="yes" Source="SourceDir\System.Management.dll" />
+                </Component>
+                <Component Id="cmpKQt28Ajh7MmH4fjHp26oAgk6D2k" Guid="*">
+                    <File Id="filb3XiZJxGXGGDyOG7rEaxKV7E5J0" KeyPath="yes" Source="SourceDir\vcruntime140_cor3.dll" />
+                </Component>
+                <Component Id="cmpXT8AQ7.O59WF_jtUnhnO4lRhizY" Guid="*">
+                    <File Id="filymJum5bgfaFrWKtghRjsv_XEPBk" KeyPath="yes" Source="SourceDir\wpfgfx_cor3.dll" />
+                </Component>
+                <Directory Id="dirL_CLH9x7A0FnP6XiNvqQtqpQF0U" Name="runtimes">
+                    <Directory Id="dirpC1YMzI74cEmLKvMokiFAmkGjVg" Name="android-arm">
+                        <Directory Id="dirlUyiUWlXR5vmKXkGegT15In3zKo" Name="native">
+                            <Component Id="cmpUJFT5TBk3OrUFZHKcWxNR2RsRa8" Guid="*">
+                                <File Id="filJIGp9cP5wifDYYbxVtBS98RMlrc" KeyPath="yes" Source="SourceDir\runtimes\android-arm\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirxpQbgKzFeiQMwTr0XDT82Hmkrpc" Name="android-arm64">
+                        <Directory Id="diraSa0NZNpGf.GsTkprzUzayy_g78" Name="native">
+                            <Component Id="cmpb6YI5ugue.ql_pKHyxgxc4D1RRc" Guid="*">
+                                <File Id="filG_xsLiDle6CO1EAN.lP8LCRA25E" KeyPath="yes" Source="SourceDir\runtimes\android-arm64\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirW2E8hWSNLDiLok8rEOFpPQWhXNM" Name="android-x64">
+                        <Directory Id="dirmgsAxc4q5gpDEPtOZpv3hRx4DzE" Name="native">
+                            <Component Id="cmp0uzWOEMrknlExNmBdMGkPP4B0l0" Guid="*">
+                                <File Id="filqPEV1T_Tap4mOZRIpCXhhbGWu9U" KeyPath="yes" Source="SourceDir\runtimes\android-x64\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirhMUV5Cl3PPHLz521RNcG3Fr_veQ" Name="android-x86">
+                        <Directory Id="diri13lQPpWUxGC02wgrWAL3CVvfkU" Name="native">
+                            <Component Id="cmpkALoCLH7L_NSyKf9_FY3s0qC5x0" Guid="*">
+                                <File Id="filM5QBnOZohupJlUY2lxQzxS6r1Ns" KeyPath="yes" Source="SourceDir\runtimes\android-x86\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirtm4vDRzaxtJcZHEwIUa3gDMN3yw" Name="linux-arm">
+                        <Directory Id="dirlyVs8ppIZ3.fnhsVav6jdJabnX0" Name="lib">
+                            <Directory Id="dirLWt0__BnX9zwUPQaI8MMM24Gj4k" Name="netstandard2.0">
+                                <Component Id="cmpGgTFP8okgi6QwF1FehNsiCkXrKo" Guid="*">
+                                    <File Id="fil6YY78Y7uwxQR2OzykWpfyiNwz0w" KeyPath="yes" Source="SourceDir\runtimes\linux-arm\lib\netstandard2.0\Mono.Posix.NETStandard.dll" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirV4KQ_84EJ2E9WlayMjcoHLrIhc0" Name="native">
+                            <Component Id="cmpxithq73gLv.Bgksam0gGo_w44Gw" Guid="*">
+                                <File Id="filkCSUkt3u.LtHYuqFoVyGuLqXBfA" KeyPath="yes" Source="SourceDir\runtimes\linux-arm\native\libMonoPosixHelper.so" />
+                            </Component>
+                            <Component Id="cmpBAYgOekXJUgeFbUirHHsyXXKoTs" Guid="*">
+                                <File Id="filny1CWDx1__vphPlm1xslNQvNSBk" KeyPath="yes" Source="SourceDir\runtimes\linux-arm\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirZIJmTMSn2sSJsgEYyGVLLTWneJ8" Name="linux-arm64">
+                        <Directory Id="dirElCXf1cbA8vs25GqnqvEQPr.wJA" Name="lib">
+                            <Directory Id="dir_MFflkUj9i8Krr6tLdQnXuBpBvc" Name="netstandard2.0">
+                                <Component Id="cmpqZi5Vyir3pZdPVRvPZlqhv1BSxg" Guid="*">
+                                    <File Id="fily1rgq8Wd8M7zjA_90mLx6LYyuvY" KeyPath="yes" Source="SourceDir\runtimes\linux-arm64\lib\netstandard2.0\Mono.Posix.NETStandard.dll" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirGQdg_dAuLXFfCYiYJMG0fW2saSE" Name="native">
+                            <Component Id="cmpp2KsoRPaqJuRY6P8Apkp6abujog" Guid="*">
+                                <File Id="filrbzI64nXrAhcEm5ehIo2aRNGg8Q" KeyPath="yes" Source="SourceDir\runtimes\linux-arm64\native\libMonoPosixHelper.so" />
+                            </Component>
+                            <Component Id="cmpIj7hwRknj2HfcTMfyXirmqGAxaE" Guid="*">
+                                <File Id="filxNX7sV.ZSfbLxiUBl4MqccIeK.E" KeyPath="yes" Source="SourceDir\runtimes\linux-arm64\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirpWm_vrR3TMwlrWAJFOMr4EgmB.E" Name="linux-armel">
+                        <Directory Id="dirDxn3tq5PwurekimULxfOS.tHHoU" Name="lib">
+                            <Directory Id="dir7PB8eokb22xUINXYmYPv6i7bJhE" Name="netstandard2.0">
+                                <Component Id="cmpFOuIeW6d15w9B2Dna.w35v_0FW8" Guid="*">
+                                    <File Id="fil0sxXsszcMUPhZUUEzjkkAz8sqX0" KeyPath="yes" Source="SourceDir\runtimes\linux-armel\lib\netstandard2.0\Mono.Posix.NETStandard.dll" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="diraso60bMC9sa7F2YIvG2u7ueVGiM" Name="native">
+                            <Component Id="cmpwyvYGbyLgW3j4.h5iWEI_t8IhAM" Guid="*">
+                                <File Id="filMW0DE5IMP18BzTJm39.F8TZWznk" KeyPath="yes" Source="SourceDir\runtimes\linux-armel\native\libMonoPosixHelper.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirmjW9dQy4o3vU5T2a3Cp.cFCAeAg" Name="linux-bionic-arm64">
+                        <Directory Id="dirVGvWWyXNAnzNDrWsQocUtzY5tw8" Name="native">
+                            <Component Id="cmp9fIHQn4TQdKLVhnNhs8dkDjp4os" Guid="*">
+                                <File Id="filgdnsVK5K21EyhicXYm1qyg_VAd8" KeyPath="yes" Source="SourceDir\runtimes\linux-bionic-arm64\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirLmvz76t7pA6eISemX0ZPeqwaubc" Name="linux-bionic-x64">
+                        <Directory Id="dirN..ITZbHjsMMTV.fTVE3C22bcd8" Name="native">
+                            <Component Id="cmpXMDGHG.PGvYa1oL8.h7LCNwQDBI" Guid="*">
+                                <File Id="filD9oqwcggEl8tt1oV5Wu8mSkgT6M" KeyPath="yes" Source="SourceDir\runtimes\linux-bionic-x64\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirTBZXSDbXwxNN4rT20.NJKjGNWGk" Name="linux-musl-arm">
+                        <Directory Id="diroH6YDdW6gDjArIKbtS2w2GSGVqo" Name="native">
+                            <Component Id="cmpvJ57C8Tdl4pgHb.2y82wrTVXrzs" Guid="*">
+                                <File Id="filP1Vp_ZwwcwOJo.xfV8Qq.YSvvGE" KeyPath="yes" Source="SourceDir\runtimes\linux-musl-arm\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirk4CT.LAOVvAHbjNELtTGoVvbqlA" Name="linux-musl-arm64">
+                        <Directory Id="dirXQurv7yD53d9gPGOVF9ItQ92rD8" Name="native">
+                            <Component Id="cmpfk3DPS2m7O2i_9v1c7aPJTvlP8A" Guid="*">
+                                <File Id="filk9sopHkDzY4v2oHEsaLbXw5mVHU" KeyPath="yes" Source="SourceDir\runtimes\linux-musl-arm64\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir1WoW69VWEVMfQtUif5hcBnqJ1Eo" Name="linux-musl-x64">
+                        <Directory Id="dirVdfabu509rMHAKUCxvDbFhXBOmw" Name="native">
+                            <Component Id="cmp4W1fVJbMSVvvWkgBbbJ1JRUrf9k" Guid="*">
+                                <File Id="filX4qdtLRt53x6CI2acr5zCeHo0Uo" KeyPath="yes" Source="SourceDir\runtimes\linux-musl-x64\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirFe_.fGwClbvIHKFNhsH3HUrgjFc" Name="linux-x64">
+                        <Directory Id="dirF4mpeohYHv54lq3t0gIEE5jzy8M" Name="lib">
+                            <Directory Id="dirHb31Jcsd0D_R3fh.gsOpraD1oHA" Name="netstandard2.0">
+                                <Component Id="cmpV.hA.m4lqiOJRmFT8cI6APXnNyE" Guid="*">
+                                    <File Id="filiC.nTOyKlQ7KjjH9UoO4N2y2Tm4" KeyPath="yes" Source="SourceDir\runtimes\linux-x64\lib\netstandard2.0\Mono.Posix.NETStandard.dll" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirRBpl_Fu9aeXFLpkTUJ7MMebih0o" Name="native">
+                            <Component Id="cmpio2vW9i8AlOBQO57Rs7dzEN0Sc4" Guid="*">
+                                <File Id="filIe.5E_p6FeMOXoq_p398ELk9j.Q" KeyPath="yes" Source="SourceDir\runtimes\linux-x64\native\libMonoPosixHelper.so" />
+                            </Component>
+                            <Component Id="cmpxOU5cAIG421BXcGh8bQS_sKja9E" Guid="*">
+                                <File Id="filyDvuaJdfkJ0bDFffoFNoubIQCGU" KeyPath="yes" Source="SourceDir\runtimes\linux-x64\native\libSystem.IO.Ports.Native.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir6ETJxYGoAlXtPQrsfUxw99qKKm4" Name="linux-x86">
+                        <Directory Id="dirDLSQT4yRA5j8n5nQvM0p1oMr3TM" Name="lib">
+                            <Directory Id="dir.wUcAwM2WBiczPzrYSNJphIACFE" Name="netstandard2.0">
+                                <Component Id="cmpwVzL4JiY_6j6U2ILU0ptrxXO.QU" Guid="*">
+                                    <File Id="fil3Ti3OR6wttZ9SJhheXGCS84AqcE" KeyPath="yes" Source="SourceDir\runtimes\linux-x86\lib\netstandard2.0\Mono.Posix.NETStandard.dll" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirbVQ36NX55RUD8K4qR7vTdF_qAi8" Name="native">
+                            <Component Id="cmpucJ8ujThgbFCSxjOdi2jtPz6Z7o" Guid="*">
+                                <File Id="fildSaWUpxiG.NAr.zmB3JFYdLigkc" KeyPath="yes" Source="SourceDir\runtimes\linux-x86\native\libMonoPosixHelper.so" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirSe2xnFt7HC4hukGeM3_3BOdQaxk" Name="maccatalyst-arm64">
+                        <Directory Id="dir9oT3.X2IVMVRduv_nvOozIVzxqk" Name="native">
+                            <Component Id="cmpOAhKOK4N5JNxQ_LcbSxoPf6E9gY" Guid="*">
+                                <File Id="filbj6wOSSW45urEETLJ0qjLx_Zldk" KeyPath="yes" Source="SourceDir\runtimes\maccatalyst-arm64\native\libSystem.IO.Ports.Native.dylib" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir65lGxUk14ttdvPZYJCL_FViOB1I" Name="maccatalyst-x64">
+                        <Directory Id="dirDF2DHAohMAdSeh8ytDexNZFcT_E" Name="native">
+                            <Component Id="cmpcnVf4DZ0ouQ3Bw4cQOgez6ZWxfw" Guid="*">
+                                <File Id="filSQFAIzNAIMwki5KsBiF46KsCTzs" KeyPath="yes" Source="SourceDir\runtimes\maccatalyst-x64\native\libSystem.IO.Ports.Native.dylib" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirPKDORl4olp.telvvr8.QVAryLc8" Name="osx">
+                        <Directory Id="dirk4KWx72puFteh0GenxJy0z_3k9E" Name="lib">
+                            <Directory Id="dirL9YxRCOLckTHhk_gnGThCfLmqFk" Name="netstandard2.0">
+                                <Component Id="cmp_2IQ3tsBlSdA6zrFl8i0qH9xQ4E" Guid="*">
+                                    <File Id="fil6Y5JjeHx9n0Z0NQZ.C28scf3LNw" KeyPath="yes" Source="SourceDir\runtimes\osx\lib\netstandard2.0\Mono.Posix.NETStandard.dll" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirKcZsJpTrNTELTb3GgtqqSSVyZeE" Name="native">
+                            <Component Id="cmpirxYbK6hw.YYqBSdFVeYnDQ6tu0" Guid="*">
+                                <File Id="filDpm8Jm7ZKJfxeaTHaWxhNV7Ajqo" KeyPath="yes" Source="SourceDir\runtimes\osx\native\libMonoPosixHelper.dylib" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirxdYFKtIL_Vv1dis2q_tDZKYIQLc" Name="osx-arm64">
+                        <Directory Id="diriPDevfRBrtLVyK0OhZ1knNvG8GM" Name="native">
+                            <Component Id="cmpri_XCUjw5uQhAeLghM_O7NaHm34" Guid="*">
+                                <File Id="filNbJVQQfDBH9UaDpn.UztlMBNVAU" KeyPath="yes" Source="SourceDir\runtimes\osx-arm64\native\libSystem.IO.Ports.Native.dylib" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirCJRjaG6Ny5GCPfkn7lS1Wc8Uk6s" Name="osx-x64">
+                        <Directory Id="dir81OcvwGmTqrzsngt4bZmoA2q2OA" Name="native">
+                            <Component Id="cmpFNT9q0a5wXVIFNaHxA_wBj77.aA" Guid="*">
+                                <File Id="fil8FXGP63DqdiytPgtavJqxsp9tQg" KeyPath="yes" Source="SourceDir\runtimes\osx-x64\native\libSystem.IO.Ports.Native.dylib" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirU3Q6VqkURchuXosEdVH_KlT3oTo" Name="unix">
+                        <Directory Id="dirwQBzttBJeJsYcTlNUflLBN7FNt0" Name="lib">
+                            <Directory Id="dirTXDrfrE7J.g5pDho4hGtd5pmt.g" Name="net8.0">
+                                <Component Id="cmpED4HfX1VpEt8N3VHDJ_rxtQm1MY" Guid="*">
+                                    <File Id="filyxmh6KRhHipPiLbIPma_TL0eB20" KeyPath="yes" Source="SourceDir\runtimes\unix\lib\net8.0\System.IO.Ports.dll" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir2hoj2V2nhqXAuzsa0zFjF2zL_nY" Name="win">
+                        <Directory Id="dirCTYFH1uze6qnxtIExE6JhSj7gRQ" Name="lib">
+                            <Directory Id="dirY4oGc44_Ybx6rGGJttiRzm7c_h0" Name="net8.0">
+                                <Component Id="cmph61Wgvw3a2ZwDAsUyMg6Cm4izTQ" Guid="*">
+                                    <File Id="filTVcQdUeTDxqKfz1q3OuKlu_Dm44" KeyPath="yes" Source="SourceDir\runtimes\win\lib\net8.0\System.IO.Ports.dll" />
+                                </Component>
+                                <Component Id="cmpsz.qkc2Uwr1.N0F4RzJnGdGmTv0" Guid="*">
+                                    <File Id="filrkOLyDRhzF7uO7cpLqi.164TXwc" KeyPath="yes" Source="SourceDir\runtimes\win\lib\net8.0\System.Management.dll" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirChpMW0nP2aYZJgbaIcztklf8ueE" Name="win-x64">
+                        <Directory Id="dirZAKSrgQd_p1zDdcjvfKJLWmMcUg" Name="lib">
+                            <Directory Id="dirKgEQKB6smQahsYIiHE6i7G_qcVo" Name="netstandard2.0">
+                                <Component Id="cmpqTl_GXWDsVGoAbVwC6bWGgYmVG8" Guid="*">
+                                    <File Id="filOj44yZaT9MmbPUdVJ.mmoRcr4hc" KeyPath="yes" Source="SourceDir\runtimes\win-x64\lib\netstandard2.0\Mono.Posix.NETStandard.dll" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirMCeNF0giaau_T5WaOki0RxA98gQ" Name="native">
+                            <Component Id="cmpscipWkQhvgn0tMNEjf2d4d0mTU4" Guid="*">
+                                <File Id="filXrMidLkxIDY4CiaB6ZxoxeVU2_0" KeyPath="yes" Source="SourceDir\runtimes\win-x64\native\libMonoPosixHelper.dll" />
+                            </Component>
+                            <Component Id="cmpP3BW6k4RQ9RWd0sIClMzoQYIa7w" Guid="*">
+                                <File Id="fil6N61V7XDqZeBY_6fVVxj_Y0XN9E" KeyPath="yes" Source="SourceDir\runtimes\win-x64\native\MonoPosixHelper.dll" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirYlqRcXN3qjDVxaQHt5fdABHzzKo" Name="win-x86">
+                        <Directory Id="dirOqG7SqnSmiGuoNcAcu98XJRhAkM" Name="lib">
+                            <Directory Id="dir0XlD8ZDvAgIBTQOeC6EDM9jElmk" Name="netstandard2.0">
+                                <Component Id="cmpPPg_Ea5PIZfMPfYLOh8eTG.ptlQ" Guid="*">
+                                    <File Id="filq80HjGUsgwyA9ZgLndfIFOydJPU" KeyPath="yes" Source="SourceDir\runtimes\win-x86\lib\netstandard2.0\Mono.Posix.NETStandard.dll" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="direS3Z7sNvX1Y99n4uJRjjXPuFt.c" Name="native">
+                            <Component Id="cmpde2eoQ1R9uSJJ9mjJjMrGeJCRsw" Guid="*">
+                                <File Id="filUWYKQqjzx_TPqTyM7esg1ALhejg" KeyPath="yes" Source="SourceDir\runtimes\win-x86\native\libMonoPosixHelper.dll" />
+                            </Component>
+                            <Component Id="cmpOjtmW0G8.p8shYRB_HYpVi4duUA" Guid="*">
+                                <File Id="filQwxurEo11jcjIcwYeZaFwR.EGWw" KeyPath="yes" Source="SourceDir\runtimes\win-x86\native\MonoPosixHelper.dll" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirKOE81KC8vs01WoMA6YYGpDiXAHU" Name="win-x64">
+                    <Component Id="cmpOwpu7DbBn6Y7blMUs3Uf9n9smFM" Guid="*">
+                        <File Id="filTr3eeRDYaKowTM54akjVSrqtU0k" KeyPath="yes" Source="SourceDir\win-x64\libMonoPosixHelper.dll" />
+                    </Component>
+                    <Component Id="cmpOMiFXMWoupo9GHiSdUPj4P_DR74" Guid="*">
+                        <File Id="filUV92fLWevFL3T97PqRjQe7kfU8E" KeyPath="yes" Source="SourceDir\win-x64\MonoPosixHelper.dll" />
+                    </Component>
+                    <Component Id="cmp32CbLPLfELH0gKzYY8casa7fUgU" Guid="*">
+                        <File Id="filQJw4HkfI5.sZguNK0gMatj6zawk" KeyPath="yes" Source="SourceDir\win-x64\Piperf.exe" />
+                    </Component>
+                    <Component Id="cmpdmldXupEMrPOW2kgHI7Cw3gSwLo" Guid="*">
+                        <File Id="filZGfyfLKiTEQlz47l6nxexwQSDRo" KeyPath="yes" Source="SourceDir\win-x64\Piperf.pdb" />
+                    </Component>
+                </Directory>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="PiperfFiles">
+            <ComponentRef Id="cmpE55FZ8QPIxn6jM10OloI74VzaC8" />
+            <ComponentRef Id="cmpUHbgT3KsELQDdjPjqTAVWT4vn1g" />
+            <ComponentRef Id="cmpLRql1FwQpxN4GyuRHYIj5CQcOnI" />
+            <ComponentRef Id="cmpsuQ0iSZdlVMPoQREaxdCl6iWdTI" />
+            <ComponentRef Id="cmpKx3Ud6oXwgxAF2v1UQDd.ZbKw0o" />
+            <ComponentRef Id="cmpzz2Ljn3f8WOgqA1v74VXktWHALc" />
+            <ComponentRef Id="cmp.FBW3pnC4gIDCumjln.eqaBSRME" />
+            <ComponentRef Id="cmpmp3A18vADrynzmoo_JIawF.lx.Q" />
+            <ComponentRef Id="cmpFjx4A3QhNJ2FzAbQEp1.BdmnsQw" />
+            <ComponentRef Id="cmpKpq34f5oYLlRQS6yYgeydu1Irq4" />
+            <ComponentRef Id="cmpCDFeld7UrVyjuRHKFbqS0eneTaE" />
+            <ComponentRef Id="cmpKeJCjCzLigTmLX5VltIcoku03Eo" />
+            <ComponentRef Id="cmpM6TdurcctB71bgrbsCC6PWuaoLc" />
+            <ComponentRef Id="cmp1xnuplWqpwA.dWxYhpCaHQi362Y" />
+            <ComponentRef Id="cmpSV8BpkeQWg_70PN3jnL2_J6DL4s" />
+            <ComponentRef Id="cmpKQt28Ajh7MmH4fjHp26oAgk6D2k" />
+            <ComponentRef Id="cmpXT8AQ7.O59WF_jtUnhnO4lRhizY" />
+            <ComponentRef Id="cmpUJFT5TBk3OrUFZHKcWxNR2RsRa8" />
+            <ComponentRef Id="cmpb6YI5ugue.ql_pKHyxgxc4D1RRc" />
+            <ComponentRef Id="cmp0uzWOEMrknlExNmBdMGkPP4B0l0" />
+            <ComponentRef Id="cmpkALoCLH7L_NSyKf9_FY3s0qC5x0" />
+            <ComponentRef Id="cmpGgTFP8okgi6QwF1FehNsiCkXrKo" />
+            <ComponentRef Id="cmpxithq73gLv.Bgksam0gGo_w44Gw" />
+            <ComponentRef Id="cmpBAYgOekXJUgeFbUirHHsyXXKoTs" />
+            <ComponentRef Id="cmpqZi5Vyir3pZdPVRvPZlqhv1BSxg" />
+            <ComponentRef Id="cmpp2KsoRPaqJuRY6P8Apkp6abujog" />
+            <ComponentRef Id="cmpIj7hwRknj2HfcTMfyXirmqGAxaE" />
+            <ComponentRef Id="cmpFOuIeW6d15w9B2Dna.w35v_0FW8" />
+            <ComponentRef Id="cmpwyvYGbyLgW3j4.h5iWEI_t8IhAM" />
+            <ComponentRef Id="cmp9fIHQn4TQdKLVhnNhs8dkDjp4os" />
+            <ComponentRef Id="cmpXMDGHG.PGvYa1oL8.h7LCNwQDBI" />
+            <ComponentRef Id="cmpvJ57C8Tdl4pgHb.2y82wrTVXrzs" />
+            <ComponentRef Id="cmpfk3DPS2m7O2i_9v1c7aPJTvlP8A" />
+            <ComponentRef Id="cmp4W1fVJbMSVvvWkgBbbJ1JRUrf9k" />
+            <ComponentRef Id="cmpV.hA.m4lqiOJRmFT8cI6APXnNyE" />
+            <ComponentRef Id="cmpio2vW9i8AlOBQO57Rs7dzEN0Sc4" />
+            <ComponentRef Id="cmpxOU5cAIG421BXcGh8bQS_sKja9E" />
+            <ComponentRef Id="cmpwVzL4JiY_6j6U2ILU0ptrxXO.QU" />
+            <ComponentRef Id="cmpucJ8ujThgbFCSxjOdi2jtPz6Z7o" />
+            <ComponentRef Id="cmpOAhKOK4N5JNxQ_LcbSxoPf6E9gY" />
+            <ComponentRef Id="cmpcnVf4DZ0ouQ3Bw4cQOgez6ZWxfw" />
+            <ComponentRef Id="cmp_2IQ3tsBlSdA6zrFl8i0qH9xQ4E" />
+            <ComponentRef Id="cmpirxYbK6hw.YYqBSdFVeYnDQ6tu0" />
+            <ComponentRef Id="cmpri_XCUjw5uQhAeLghM_O7NaHm34" />
+            <ComponentRef Id="cmpFNT9q0a5wXVIFNaHxA_wBj77.aA" />
+            <ComponentRef Id="cmpED4HfX1VpEt8N3VHDJ_rxtQm1MY" />
+            <ComponentRef Id="cmph61Wgvw3a2ZwDAsUyMg6Cm4izTQ" />
+            <ComponentRef Id="cmpsz.qkc2Uwr1.N0F4RzJnGdGmTv0" />
+            <ComponentRef Id="cmpqTl_GXWDsVGoAbVwC6bWGgYmVG8" />
+            <ComponentRef Id="cmpscipWkQhvgn0tMNEjf2d4d0mTU4" />
+            <ComponentRef Id="cmpP3BW6k4RQ9RWd0sIClMzoQYIa7w" />
+            <ComponentRef Id="cmpPPg_Ea5PIZfMPfYLOh8eTG.ptlQ" />
+            <ComponentRef Id="cmpde2eoQ1R9uSJJ9mjJjMrGeJCRsw" />
+            <ComponentRef Id="cmpOjtmW0G8.p8shYRB_HYpVi4duUA" />
+            <ComponentRef Id="cmpOwpu7DbBn6Y7blMUs3Uf9n9smFM" />
+            <ComponentRef Id="cmpOMiFXMWoupo9GHiSdUPj4P_DR74" />
+            <ComponentRef Id="cmp32CbLPLfELH0gKzYY8casa7fUgU" />
+            <ComponentRef Id="cmpdmldXupEMrPOW2kgHI7Cw3gSwLo" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

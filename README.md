@@ -4,11 +4,11 @@ A lightweight always-on-top performance overlay for Windows built with WPF. Pipe
 
 ## Features
 
-- Transparent click-through overlay that can toggle to interactive mode on demand
+- Transparent click-through overlay with Alt + drag repositioning
 - Live CPU/GPU utilisation and temperature readings via LibreHardwareMonitor
 - Disk and network throughput sampled from Windows performance counters
-- Latency probe that pings a configurable host every 500 ms and shows round-trip time or timeout status
-- Tray icon with quick controls to show the window, switch interaction mode, toggle run-on-startup, or quit
+- Latency probe that pings a configurable host every 1000 ms and shows round-trip time or timeout status
+- Tray icon with quick controls to show/hide the overlay, toggle run-on-startup, or quit
 - Remembers window position, opacity, font size, and poll interval via a JSON config file
 
 ## Requirements
@@ -36,9 +36,19 @@ When launched, Piperf shows the overlay immediately and begins loading hardware 
 ## Controls
 
 - **Alt + drag**: Move the overlay
-- **Alt + double-click**: Toggle persistent click-through vs interactive mode
-- **Ctrl + Shift + P**: Toggle mode (fallback shortcut)
-- **Tray icon menu**: Show window, toggle interaction mode, enable/disable Startup, quit
+- **Tray icon menu**: Show/Hide overlay, enable/disable Startup, quit
+
+## Notes
+
+- Piperf needs administrator permission to read CPU temperature sensors; metrics still work without it if you do not care about CPU temps.
+- Windows Defender may flag LibreHardwareMonitorLib because it calls low-level APIs to read hardware sensors; the library is safe for this use.
+
+## Installer
+
+1. `dotnet publish -c Release -r win-x64 --self-contained false -o publish`
+2. `dotnet wix build Installer\PiperfInstaller.wixproj -c Release`
+
+The WiX build produces an MSI in `Installer\bin\Release\x64`. The installer defaults to adding Piperf to Windows startup (you can uncheck the box on the final screen).
 
 ## Configuration
 
@@ -48,7 +58,7 @@ A JSON configuration file is stored under `%APPDATA%\Piperf\config\config.json`.
 - `Opacity`: Overlay opacity (0-1)
 - `FontSize`: Text size in points
 - `PingTarget`: Hostname or IP address to ping (default `1.1.1.1`)
-- `PingIntervalMs`: Ping refresh cadence in milliseconds (default `500`)
+- `PingIntervalMs`?: Ping refresh cadence in milliseconds (default `1000`)
 - `PositionX` / `PositionY`: Stored window coordinates
 
 Edit the file while Piperf is closed, or add UI in the future to handle live updates.
@@ -62,3 +72,4 @@ Edit the file while Piperf is closed, or add UI in the future to handle live upd
 ## License
 
 This repository currently has no explicit licence. Add one before distributing builds externally.
+

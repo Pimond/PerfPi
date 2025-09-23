@@ -1,0 +1,58 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package Name="Piperf" Manufacturer="Pimond" Version="1.0.0.0" UpgradeCode="{e469b62d-12df-47f6-9e04-dca92fc2c071}" Language="1033" Scope="perMachine" Compressed="yes">
+
+    <!-- v4 requires an Id on Media -->
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Piperf is already installed." />
+
+    <!-- OPTIONAL ARP props -->
+    <Property Id="ARPNOREPAIR" Value="1" />
+
+    <!-- Startup checkbox public property (unchecked by default) -->
+    <Property Id="RUNONSTARTUP" Value="0" />
+    <Property Id="WixUI_CustomPublicProperties" Value="RUNONSTARTUP" />
+
+    <!-- Install to %LOCALAPPDATA%\Programs\Piperf -->
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="Piperf" />
+    </StandardDirectory>
+
+    <!-- Start Menu -->
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="PiperfProgramMenu" Name="Piperf" />
+    </StandardDirectory>
+
+    <!-- Your payload (Heat-generated group) + our components -->
+    <Feature Id="MainFeature" Title="Piperf" Level="1">
+      <ComponentGroupRef Id="PiperfFiles" />
+      <ComponentRef Id="RunOnStartupComponent" />
+      <ComponentRef Id="StartMenuShortcutComponent" />
+    </Feature>
+
+    <!-- HKCU\...\Run entry (only if checkbox was ticked) -->
+    <Component Id="RunOnStartupComponent" Directory="INSTALLFOLDER" Guid="{f77b2e7f-cf47-440a-93c4-a433228cfb27}" Condition="RUNONSTARTUP = 1">
+      <RegistryValue Root="HKCU" Key="Software\Microsoft\Windows\CurrentVersion\Run" Name="Piperf" Type="string" Value="&quot;[INSTALLFOLDER]Piperf.exe&quot;" KeyPath="yes" />
+    </Component>
+
+    <!-- Start Menu shortcut (per-user) -->
+    <Component Id="StartMenuShortcutComponent" Directory="PiperfProgramMenu" Guid="{b1a5b8f5-3c32-4531-9b3a-8a0b0c2b7f41}">
+      <Shortcut Id="sm_Piperf" Name="Piperf" Target="[INSTALLFOLDER]Piperf.exe" WorkingDirectory="INSTALLFOLDER" />
+      <RemoveFolder Id="rm_PiperfProgramMenu" On="uninstall" />
+      <RegistryValue Root="HKCU" Key="Software\Piperf" Name="installed" Value="1" Type="integer" KeyPath="yes" />
+    </Component>
+
+    <!-- Built-in UI with folder picker; wire it to INSTALLFOLDER -->
+    <UI>
+      <ui:WixUI Id="WixUI_InstallDir" />
+    </UI>
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+    <!-- Exit dialog checkbox wiring -->
+    <WixVariable Id="WixUI_ExitDialogOptionalCheckboxText" Value="Run Piperf when Windows starts" />
+    <WixVariable Id="WixUI_ExitDialogOptionalCheckBox" Value="RUNONSTARTUP" />
+
+  </Package>
+</Wix>
+
+
