@@ -67,7 +67,7 @@ Edit the file while Piperf is closed, or add UI in the future to handle live upd
 
 - **Slow startup**: First launch may take a few seconds while hardware sensors initialise. Subsequent launches should be faster thanks to background initialisation and on-demand updates.
 - **Tray icon missing**: Ensure `Assets/Piperf.ico` exists and remains marked as a WPF resource. The tray loader now uses the application resource stream and falls back to `SystemIcons.Application` if the icon cannot be found.
-- **Missing metrics**: LibreHardwareMonitor sometimes needs elevated rights for certain sensors. Run once as administrator if GPU temperatures stay blank.
+- **Missing metrics**: LibreHardwareMonitor sometimes needs elevated rights for certain sensors. Run once as administrator if CPU temperatures stay blank.
 
 ## License
 
